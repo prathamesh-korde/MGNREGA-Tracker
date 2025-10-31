@@ -12,7 +12,7 @@ RUN npm install --production
 COPY . .
 
 # Expose port
-EXPOSE 5000
+EXPOSE 3001
 
-# Start application
-CMD ["npm", "start"]
+# Start application with simple-server.js
+CMD ["node", "simple-server.js"]

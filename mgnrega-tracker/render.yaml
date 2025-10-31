@@ -2,24 +2,22 @@ services:
   # Backend Service
   - type: web
     name: mgnrega-backend
-    runtime: node
-    env: node
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && node simple-server.js
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 3001
-    healthCheckPath: /health
+    healthCheckPath: /api/health
 
   # Frontend Service
   - type: web
     name: mgnrega-frontend
-    runtime: node
-    env: node
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/build
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
     envVars:
       - key: REACT_APP_API_URL
         fromService:

@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6
+    container_name: mgnrega-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: mgnrega_tracker
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - mgnrega-network
+    ports:
+      - "27017:27017"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mgnrega-backend
+    restart: unless-stopped
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/mgnrega_tracker
+      - NODE_ENV=production
+      - CACHE_DURATION_HOURS=24
+      - API_RETRY_ATTEMPTS=3
+      - API_TIMEOUT_MS=10000
+    depends_on:
+      - mongodb
+    networks:
+      - mgnrega-network
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mgnrega-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - mgnrega-network
+    ports:
+      - "80:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/api
+
+networks:
+  mgnrega-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local

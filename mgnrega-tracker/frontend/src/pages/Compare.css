@@ -1,0 +1,275 @@
+.compare {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.compare-loading,
+.compare-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.compare-header {
+  margin-bottom: 30px;
+}
+
+.compare-header .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #4CAF50;
+  text-decoration: none;
+  margin-bottom: 15px;
+  width: fit-content;
+}
+
+.compare-header .breadcrumb:hover {
+  color: #2E7D32;
+}
+
+.compare-header h2 {
+  color: #2E7D32;
+}
+
+.compare-header h2 .hindi {
+  display: block;
+  font-size: 2rem;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  margin-bottom: 5px;
+}
+
+.compare-header h2 .english {
+  display: block;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.comparison-table-wrapper {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.comparison-table-wrapper h3 {
+  color: #2E7D32;
+  margin-bottom: 20px;
+}
+
+.comparison-table-wrapper h3 .hindi {
+  display: block;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 3px;
+}
+
+.comparison-table-wrapper h3 .english {
+  display: block;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.comparison-table th {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.comparison-table td {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.comparison-table tbody tr:hover {
+  background: #f5f5f5;
+}
+
+.district-name {
+  font-weight: 600;
+  color: #2E7D32;
+}
+
+.progress-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.view-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px;
+  background: #2196F3;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.view-button:hover {
+  background: #1976D2;
+  transform: translateX(3px);
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chart-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.chart-card h3 {
+  color: #2E7D32;
+  margin-bottom: 20px;
+}
+
+.chart-card h3 .hindi {
+  display: block;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 3px;
+}
+
+.chart-card h3 .english {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.top-performers {
+  background: linear-gradient(135deg, #FFF9C4 0%, #FFF59D 100%);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.top-performers h3 {
+  color: #F57F17;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
+
+.performers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.performer-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.performer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.performer-card h4 {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
+
+.performer-name {
+  color: #2E7D32;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.performer-value {
+  color: #FF9800;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .compare {
+    padding: 15px;
+  }
+
+  .compare-header h2 .hindi {
+    font-size: 1.5rem;
+  }
+
+  .compare-header h2 .english {
+    font-size: 1rem;
+  }
+
+  .comparison-table-wrapper {
+    padding: 15px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .performers-grid {
+    grid-template-columns: 1fr;
+  }
+}

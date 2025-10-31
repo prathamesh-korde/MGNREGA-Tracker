@@ -1,0 +1,28 @@
+services:
+  # Backend Service
+  - type: web
+    name: mgnrega-backend
+    runtime: node
+    env: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node simple-server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+    healthCheckPath: /health
+
+  # Frontend Service
+  - type: web
+    name: mgnrega-frontend
+    runtime: node
+    env: node
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        fromService:
+          type: web
+          name: mgnrega-backend
+          envVarKey: RENDER_EXTERNAL_URL

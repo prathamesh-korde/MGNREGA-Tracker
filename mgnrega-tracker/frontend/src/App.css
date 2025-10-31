@@ -1,0 +1,38 @@
+.App {
+  min-height: 100vh;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #ffffff;
+}
+
+body.dark-mode .card {
+  background: rgba(45, 45, 45, 0.9);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .header {
+  background: rgba(30, 30, 30, 0.95);
+  border-bottom: 2px solid #4CAF50;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+  background: #2d2d2d;
+  color: #ffffff;
+  border-color: #4CAF50;
+}
+
+body.dark-mode .metric-card {
+  background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}

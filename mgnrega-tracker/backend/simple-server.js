@@ -291,3 +291,6 @@ try {
 }
 
 console.log('Server setup complete, waiting for connections...');
+
+// Export for Vercel serverless
+module.exports = app;

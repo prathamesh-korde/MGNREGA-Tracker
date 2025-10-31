@@ -38,6 +38,7 @@ function Compare() {
   };
 
   const formatNumber = (num) => {
+    if (!num || num === undefined || num === null) return '0';
     if (num >= 10000000) return `${(num / 10000000).toFixed(1)}Cr`;
     if (num >= 100000) return `${(num / 100000).toFixed(1)}L`;
     return num.toLocaleString('en-IN');
@@ -63,20 +64,20 @@ function Compare() {
     );
   }
 
-  // Prepare chart data
+  // Prepare chart data with safety checks
   const employmentCompare = compareData.map(d => ({
-    name: d.districtName.substring(0, 10),
-    'रोजगार / Employment': d.employmentProvided,
+    name: d?.districtName?.substring(0, 10) || 'Unknown',
+    'रोजगार / Employment': d?.employmentProvided || 0,
   }));
 
   const budgetCompare = compareData.map(d => ({
-    name: d.districtName.substring(0, 10),
-    'उपयोग % / Utilization %': d.utilizationPercentage,
+    name: d?.districtName?.substring(0, 10) || 'Unknown',
+    'उपयोग % / Utilization %': d?.utilizationPercentage || 0,
   }));
 
   const personDaysCompare = compareData.map(d => ({
-    name: d.districtName.substring(0, 10),
-    'व्यक्ति-दिन / Person Days': d.personDaysGenerated,
+    name: d?.districtName?.substring(0, 10) || 'Unknown',
+    'व्यक्ति-दिन / Person Days': d?.personDaysGenerated || 0,
   }));
 
   return (
@@ -112,28 +113,28 @@ function Compare() {
             <tbody>
               {compareData.map((district, index) => (
                 <tr key={index}>
-                  <td className="district-name">{district.districtName}</td>
-                  <td>{formatNumber(district.activeJobCards)}</td>
-                  <td>{formatNumber(district.employmentProvided)}</td>
-                  <td>{formatNumber(district.personDaysGenerated)}</td>
+                  <td className="district-name">{district?.districtName || 'Unknown'}</td>
+                  <td>{formatNumber(district?.activeJobCards)}</td>
+                  <td>{formatNumber(district?.employmentProvided)}</td>
+                  <td>{formatNumber(district?.personDaysGenerated)}</td>
                   <td>
                     <div className="progress-cell">
                       <div className="progress-bar">
                         <div 
                           className="progress-fill" 
                           style={{ 
-                            width: `${district.utilizationPercentage}%`,
-                            background: district.utilizationPercentage > 80 ? '#4CAF50' : 
-                                       district.utilizationPercentage > 60 ? '#FF9800' : '#F44336'
+                            width: `${district?.utilizationPercentage || 0}%`,
+                            background: (district?.utilizationPercentage || 0) > 80 ? '#4CAF50' : 
+                                       (district?.utilizationPercentage || 0) > 60 ? '#FF9800' : '#F44336'
                           }}
                         ></div>
                       </div>
-                      <span>{district.utilizationPercentage}%</span>
+                      <span>{district?.utilizationPercentage || 0}%</span>
                     </div>
                   </td>
                   <td>
                     <Link 
-                      to={`/dashboard/${district.stateCode}/${district.districtCode}`}
+                      to={`/dashboard/${district?.stateCode || 'MH'}/${district?.districtCode || 'unknown'}`}
                       className="view-button"
                     >
                       विवरण / Details <FaArrowRight />
@@ -222,30 +223,30 @@ function Compare() {
           <div className="performer-card">
             <h4>सबसे अधिक रोजगार / Most Employment</h4>
             <p className="performer-name">
-              {[...compareData].sort((a, b) => b.employmentProvided - a.employmentProvided)[0]?.districtName}
+              {[...compareData].sort((a, b) => (b?.employmentProvided || 0) - (a?.employmentProvided || 0))[0]?.districtName || 'N/A'}
             </p>
             <p className="performer-value">
-              {formatNumber([...compareData].sort((a, b) => b.employmentProvided - a.employmentProvided)[0]?.employmentProvided)}
+              {formatNumber([...compareData].sort((a, b) => (b?.employmentProvided || 0) - (a?.employmentProvided || 0))[0]?.employmentProvided)}
             </p>
           </div>
 
           <div className="performer-card">
             <h4>सर्वोत्तम बजट उपयोग / Best Budget Utilization</h4>
             <p className="performer-name">
-              {[...compareData].sort((a, b) => b.utilizationPercentage - a.utilizationPercentage)[0]?.districtName}
+              {[...compareData].sort((a, b) => (b?.utilizationPercentage || 0) - (a?.utilizationPercentage || 0))[0]?.districtName || 'N/A'}
             </p>
             <p className="performer-value">
-              {[...compareData].sort((a, b) => b.utilizationPercentage - a.utilizationPercentage)[0]?.utilizationPercentage}%
+              {[...compareData].sort((a, b) => (b?.utilizationPercentage || 0) - (a?.utilizationPercentage || 0))[0]?.utilizationPercentage || 0}%
             </p>
           </div>
 
           <div className="performer-card">
             <h4>सबसे अधिक व्यक्ति-दिन / Most Person Days</h4>
             <p className="performer-name">
-              {[...compareData].sort((a, b) => b.personDaysGenerated - a.personDaysGenerated)[0]?.districtName}
+              {[...compareData].sort((a, b) => (b?.personDaysGenerated || 0) - (a?.personDaysGenerated || 0))[0]?.districtName || 'N/A'}
             </p>
             <p className="performer-value">
-              {formatNumber([...compareData].sort((a, b) => b.personDaysGenerated - a.personDaysGenerated)[0]?.personDaysGenerated)}
+              {formatNumber([...compareData].sort((a, b) => (b?.personDaysGenerated || 0) - (a?.personDaysGenerated || 0))[0]?.personDaysGenerated)}
             </p>
           </div>
         </div>

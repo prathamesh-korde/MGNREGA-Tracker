@@ -1,0 +1,14 @@
+{
+  "name": "mgnrega-tracker",
+  "version": "1.0.0",
+  "description": "MGNREGA Performance Tracker for Rural India",
+  "scripts": {
+    "install-frontend": "cd frontend && npm install",
+    "install-backend": "cd backend && npm install",
+    "build": "cd frontend && npm install && npm run build",
+    "start": "cd backend && npm start"
+  },
+  "keywords": ["mgnrega", "rural", "india", "tracker"],
+  "author": "Prathamesh Korde",
+  "license": "MIT"
+}
